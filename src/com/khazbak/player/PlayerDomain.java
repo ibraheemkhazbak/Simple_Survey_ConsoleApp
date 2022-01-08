@@ -1,13 +1,17 @@
 package com.khazbak.player;
 
-import com.khazbak.AnswerGrabber;
-import com.khazbak.Renderer;
-import com.khazbak.player.Player;
+import com.khazbak.inputgrabber.IInputGrabber;
+import com.khazbak.inputgrabber.InputGrabber;
+import com.khazbak.renderer.IRenderer;
 
 public class PlayerDomain {
     public Player player;
-    public PlayerDomain(Player player) {
+    private IRenderer _renderer;
+    private IInputGrabber _inputGrabber;
+    public PlayerDomain(IRenderer renderer,IInputGrabber inputGrabber,Player player) {
         this.player=player;
+        this._renderer=renderer;
+        this._inputGrabber=inputGrabber;
     }
     public void askAll(){
         boolean isYes;
@@ -28,7 +32,7 @@ public class PlayerDomain {
 
     public boolean ask(Question question){
         boolean isYes=false;
-        Renderer.renderQuestion(question);
+        _renderer.renderQuestion(question);
         isYes=getAnswer(question);
     return isYes;
     }
@@ -37,7 +41,7 @@ public class PlayerDomain {
         boolean answer;
     while (true){
         try{
-            answer= AnswerGrabber.getBoolean(question.text);
+            answer= _inputGrabber.getBoolean(question.text);
             break;
         }catch (Exception e){
             e.printStackTrace();

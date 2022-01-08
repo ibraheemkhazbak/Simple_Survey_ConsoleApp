@@ -1,18 +1,19 @@
-package com.khazbak;
+package com.khazbak.renderer;
 
 import com.khazbak.player.Question;
 
 import java.util.List;
 
-public class Renderer {
-    public static void renderQuestion(Question question){
+public class Renderer implements IRenderer {
+    public void renderQuestion(Question question){
         System.out.println(question.getText()+" (y/n)");
     }
 
-    public static void renderResult(List<Question> questions){
+    public void renderResult(List<Question> questions){
+        System.out.println("===========================");
         System.out.println("Result");
         for (Question question: questions) {
-            Renderer.renderQuestion(question);
+            renderQuestion(question);
             System.out.println(question.getAnswered());
         }
 

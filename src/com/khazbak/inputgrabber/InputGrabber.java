@@ -1,11 +1,11 @@
-package com.khazbak;
+package com.khazbak.inputgrabber;
 
 import java.util.Scanner;
 
-public class AnswerGrabber {
+public class InputGrabber implements IInputGrabber{
 private static Scanner scan=new Scanner(System.in);
 
-    public static boolean getBoolean(String message) {
+    public boolean getBoolean(String message) {
         char ansChar;
 
         boolean answer;
